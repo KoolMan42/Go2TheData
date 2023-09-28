@@ -1,0 +1,35 @@
+service BookStoreV1 {
+  rpc readBook(BookReadRequest) returns (BookReadResponse){}
+  rpc writeBook(Book) returns (Book){}
+  rpc writeBooks(stream Book) returns (stream Book) {}
+  
+
+}
+
+message WriteBooksRequest {
+
+}
+message BookReadRequest {
+  required int32 book_ID = 1;
+}
+message BookReadResponse {
+  required Book book = 1;
+}
+
+
+message Book {
+  optional string ASIN = 1;
+  required string publisher = 2;
+  required string language = 3;
+  required BookType type = 4;
+  required int64 length = 5;
+  required string ISBN10 = 6;
+  optional string ISBN13 = 7;
+  optional int32 book_ID = 8;
+}
+
+
+enum BookType {
+  HardCover = 1;
+  PaperBack = 2;
+}
